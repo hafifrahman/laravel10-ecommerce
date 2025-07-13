@@ -15,9 +15,14 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        if (Auth::attempt($request->only('email', 'password'), $request->remember)) {
-            if (Auth::user()->role == 'admin') {
-                return redirect('/admin');
+        if (Auth::attempt($request->only('email', 'password'), true)) {
+            $user = User::where('email', $request->email)->first();
+            $user->update([
+                'last_login' => now(),
+            ]);
+
+            if ($user->role == 'admin') {
+                return redirect('/admin/dashboard');
             }
             return redirect('/');
         }

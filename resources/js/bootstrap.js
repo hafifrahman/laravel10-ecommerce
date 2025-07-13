@@ -1,5 +1,3 @@
-import 'bootstrap';
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
  * to our Laravel back-end. This library automatically handles sending the
@@ -32,3 +30,21 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
 //     enabledTransports: ['ws', 'wss'],
 // });
+
+import jQuery from 'jquery';
+window.$ = window.jQuery = jQuery;
+
+$.ajaxSetup({
+  headers: {
+    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content'),
+  },
+});
+
+import feather from 'feather-icons';
+window.feather = feather;
+
+import notify from './util/notify';
+window.notify = notify;
+
+import initDataTable from './util/init-datatable';
+window.initDataTable = initDataTable;

@@ -5,9 +5,8 @@
         <div class="col-xl-3 col-lg-4 col-md-6">
           <div class="footer-contact">
             <div class="brand-logo">
-              <a href="index.htm" class="footer-logo float-start">
-                <img src="{{ asset('storage/images/logo.png') }}" class="f-logo img-fluid blur-up lazyload"
-                  alt="logo">
+              <a href="/" class="footer-logo float-start">
+                <img src="{{ asset('storage/img/logo.png') }}" class="f-logo img-fluid blur-up lazyload" alt="logo">
               </a>
             </div>
             <ul class="contact-lists" style="clear:both;">
@@ -105,7 +104,7 @@
             <div class="form-newsletter">
               <div class="input-group mb-4">
                 <input type="text" class="form-control color-4" placeholder="Your Email Address">
-                <span class="input-group-text" id="basic-addon4"><i class="fas fa-arrow-right"></i></span>
+                <span class="input-group-text" id="basic-addon4"><i class="fa fa-arrow-right"></i></span>
               </div>
               <p class="font-dark mb-0">Keep up to date with our latest news and special offers.
               </p>

@@ -25,14 +25,14 @@ class CartController extends Controller
         ]);
 
         $product = Product::find($request->id);
-        $price = $product->sale_price ? $product->sale_price : $product->regular_price;
         Cart::instance('cart')
-            ->add($product->id, $product->name, $request->quantity, $price)
+            ->add($product->id, $product->name, $request->quantity, $product->price)
             ->associate('App\Models\Product');
 
         return response()->json([
-            'status' => true,
+            'status' => 'success',
             'message' => 'Barang berhasil di tambahkan ke keranjang.',
+            'count' => Cart::instance('cart')->content()->count(),
         ]);
     }
 
@@ -50,9 +50,27 @@ class CartController extends Controller
         Cart::instance('cart')->remove($id);
 
         return response()->json([
-            'status' => true,
+            'status' => 'success',
             'message' => 'Barang berhasil di hapus dari keranjang.',
             'count' => Cart::instance('cart')->content()->count(),
         ]);
+    }
+
+    public function clear()
+    {
+        try {
+            Cart::instance('cart')->destroy();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Semua item berhasil dihapus dari keranjang',
+                'count' => Cart::instance('cart')->content()->count(),
+            ]);
+        } catch (\Exception $e) {
+            return response()->json([
+                'status' => 'danger',
+                'message' => 'Gagal menghapus item dari keranjang: ' . $e->getMessage(),
+            ], 500);
+        }
     }
 }

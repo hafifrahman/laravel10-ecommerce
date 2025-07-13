@@ -1,43 +1,6 @@
 @extends('layouts.app')
-@section('title', 'Product Detail')
-@push('styles')
-  <link id="color-link" rel="stylesheet" type="text/css" href="{{ asset('assets/css/demo2.css') }}">
-@endpush
+@section('title', 'Detail Barang')
 @section('content')
-  <div class="mobile-menu d-sm-none">
-    <ul>
-      <li>
-        <a href="demo3.php" class="active">
-          <i data-feather="home"></i>
-          <span>Home</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          <i data-feather="align-justify"></i>
-          <span>Category</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          <i data-feather="shopping-bag"></i>
-          <span>Cart</span>
-        </a>
-      </li>
-      <li>
-        <a href="javascript:void(0)">
-          <i data-feather="heart"></i>
-          <span>Wishlist</span>
-        </a>
-      </li>
-      <li>
-        <a href="user-dashboard.php">
-          <i data-feather="user"></i>
-          <span>Account</span>
-        </a>
-      </li>
-    </ul>
-  </div>
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
       <li></li>
@@ -78,135 +41,47 @@
           <div class="details-items">
             <div class="row g-4">
               <div class="col-md-6">
-                <div class="row">
-                  <div class="col-lg-2">
-                    <div class="details-image-vertical black-slide rounded">
-                      <div>
-                        <img src="{{ asset('storage/images/fashion/product/front/' . $product->image) }}"
-                          class="img-fluid blur-up lazyload" alt="{{ $product->name }}">
-                      </div>
-                      @if ($product->images)
-                        @php
-                          $images = explode(',', $product->images);
-                        @endphp
-                        @foreach ($images as $image)
-                          <div>
-                            <img src="{{ asset('storage/images/fashion/product/front/' . $image) }}"
-                              class="img-fluid blur-up lazyload" alt="">
-                          </div>
-                        @endforeach
-                      @endif
-                    </div>
-                  </div>
-                  <div class="col-lg-10">
-                    <div class="details-image-1 ratio_asos">
-                      <div>
-                        <img src="{{ asset('storage/images/fashion/product/front/' . $product->image) }}"
-                          class="img-fluid w-100 image_zoom_cls-0 blur-up lazyload" alt="{{ $product->name }}">
-                      </div>
-                      @if ($product->images)
-                        @php
-                          $images = explode(',', $product->images);
-                        @endphp
-                        @foreach ($images as $image)
-                          <div>
-                            <img src="{{ asset('storage/images/fashion/product/front/' . $image) }}"
-                              class="img-fluid blur-up lazyload" alt="">
-                          </div>
-                        @endforeach
-                      @endif
-                    </div>
+                <div class="details-image-1 ratio_asos">
+                  <div>
+                    <img src="{{ asset('storage/img/barang/' . $product->image) }}"
+                      class="img-fluid w-100 image_zoom_cls-0 blur-up lazyload" alt="{{ $product->name }}">
                   </div>
                 </div>
               </div>
 
               <div class="col-md-6">
                 <div class="cloth-details-size">
-                  <div class="product-count">
+                  {{-- <div class="product-count">
                     <ul>
                       <li>
-                        <img src="{{ asset('storage/images/gif/fire.gif') }}" class="img-fluid blur-up lazyload"
+                        <img src="{{ asset('storage/img/gif/fire.gif') }}" class="img-fluid blur-up lazyload"
                           alt="image">
                         <span class="p-counter">37</span>
                         <span class="lang">orders in last 24 hours</span>
                       </li>
                       <li>
-                        <img src="{{ asset('storage/images/gif/person.gif') }}"
-                          class="img-fluid user_img blur-up lazyload" alt="image">
+                        <img src="{{ asset('storage/img/gif/person.gif') }}" class="img-fluid user_img blur-up lazyload"
+                          alt="image">
                         <span class="p-counter">44</span>
                         <span class="lang">active view this</span>
                       </li>
                     </ul>
-                  </div>
+                  </div> --}}
 
                   <div class="details-image-concept">
                     <h2>{{ $product->name }}</h2>
                   </div>
 
-                  <div class="label-section">
+                  {{-- <div class="label-section">
                     <span class="badge badge-grey-color">#1 Best seller</span>
                     <span class="label-text">in fashion</span>
-                  </div>
+                  </div> --}}
 
                   <h3 class="price-detail">
-                    @if ($product->sale_price)
-                      {{ $product->sale_price }}
-                      <del>${{ $product->regular_price }}</del>
-                      <span>{{ round((($product->regular_price - $product->sale_price) / $product->regular_price) * 100) }}%off</span>
-                    @else
-                      {{ $product->regular_price }}
-                    @endif
+                    Rp.{{ $product->price }}
                   </h3>
 
-                  <div class="color-image">
-                    <div class="image-select">
-                      <h5>Color :</h5>
-                      <ul class="image-section">
-                        <li>
-                          <a href="javascript:void(0)">
-                            <img src="{{ asset('storage/images/fashion/product/front/5.jpg') }}"
-                              class="img-fluid blur-up lazyload" alt="">
-                          </a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <img src="{{ asset('storage/images/fashion/product/front/6.jpg') }}"
-                              class="img-fluid blur-up lazyload" alt="">
-                          </a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)">
-                            <img src="{{ asset('storage/images/fashion/product/front/7.jpg') }}"
-                              class="img-fluid blur-up lazyload" alt="">
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-
                   <div id="selectSize" class="addeffect-section product-description border-product">
-                    <h6 class="product-title size-text">select size
-                      <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#sizemodal">size chart</a>
-                    </h6>
-
-                    <h6 class="error-message">please select size</h6>
-
-                    <div class="size-box">
-                      <ul>
-                        <li>
-                          <a href="javascript:void(0)">s</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)">m</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)">l</a>
-                        </li>
-                        <li>
-                          <a href="javascript:void(0)">xl</a>
-                        </li>
-                      </ul>
-                    </div>
 
                     <h6 class="product-title product-title-2 d-block">quantity</h6>
 
@@ -235,33 +110,24 @@
                       <i class="fa fa-bookmark fz-16 me-2"></i>
                       <span>Wishlist</span>
                     </a>
-                    <button onclick="document.getElementById('addtocart').submit();" type="button" id="cartEffect"
-                      class="btn btn-solid hover-solid btn-animation">
+                    <button type="button" id="cartEffect" data-product-id="{{ $product->id }}"
+                      class="btn btn-solid hover-solid btn-animation addtocart-btn">
                       <i class="fa fa-shopping-cart"></i>
                       <span>Add To Cart</span>
                     </button>
-                    <form id="addtocart" method="post" action="/cart" class="hidden">
-                      @csrf
-                      <input type="hidden" name="id" value="{{ $product->id }}">
-                      <input type="hidden" name="quantity" id="qty" value="1">
-                    </form>
                   </div>
 
-                  <ul class="product-count shipping-order">
+                  {{-- <ul class="product-count shipping-order">
                     <li>
-                      <img src="{{ asset('storage/images/gif/truck.png') }}" class="img-fluid blur-up lazyload"
+                      <img src="{{ asset('storage/img/gif/truck.png') }}" class="img-fluid blur-up lazyload"
                         alt="image">
                       <span class="lang">Free shipping for orders above $500 USD</span>
                     </li>
-                  </ul>
+                  </ul> --}}
 
                   <div class="mt-2 mt-md-3 border-product">
                     <h6 class="product-title hurry-title d-block">
-                      @if ($product->stock_status == 'instock')
-                        InStock
-                      @else
-                        Out Of Stock
-                      @endif
+                      Stock : {{ $product->stock > 0 ? 'Ada' : 'Kosong' }}
                     </h6>
                     <div class="progress">
                       <div class="progress-bar" role="progressbar" style="width: 78%"></div>
@@ -347,7 +213,7 @@
             <div class="tab-content" id="nav-tabContent">
               <div class="tab-pane fade show active" id="desc">
                 <div class="shipping-chart">
-                  {{ $product->short_description }}
+                  {{ $product->description }}
                 </div>
               </div>
 
@@ -668,7 +534,7 @@
 
                       <div class="customer-section">
                         <div class="customer-profile">
-                          <img src="{{ asset('storage/images/inner-page/review-image/1.jpg') }}"
+                          <img src="{{ asset('storage/img/inner-page/review-image/1.jpg') }}"
                             class="img-fluid blur-up lazyload" alt="">
                         </div>
 
@@ -707,7 +573,7 @@
 
                       <div class="customer-section">
                         <div class="customer-profile">
-                          <img src="{{ asset('storage/images/inner-page/review-image/2.jpg') }}"
+                          <img src="{{ asset('storage/img/inner-page/review-image/2.jpg') }}"
                             class="img-fluid blur-up lazyload" alt="">
                         </div>
 
@@ -742,7 +608,7 @@
 
                       <div class="customer-section">
                         <div class="customer-profile">
-                          <img src="{{ asset('storage/images/inner-page/review-image/3.jpg') }}"
+                          <img src="{{ asset('storage/img/inner-page/review-image/3.jpg') }}"
                             class="img-fluid blur-up lazyload" alt="">
                         </div>
 
@@ -775,7 +641,7 @@
 
                       <div class="customer-section">
                         <div class="customer-profile">
-                          <img src="{{ asset('storage/images/inner-page/review-image/4.jpg') }}"
+                          <img src="{{ asset('storage/img/inner-page/review-image/4.jpg') }}"
                             class="img-fluid blur-up lazyload" alt="">
                         </div>
 
@@ -834,26 +700,26 @@
                   <div class="img-wrapper">
                     <div class="front">
                       <a href="/product/{{ $rproduct->slug }}">
-                        <img src="{{ asset('storage/images/fashion/product/front/' . $rproduct->image) }}"
+                        <img src="{{ asset('storage/img/barang/' . $rproduct->image) }}"
                           class="bg-img blur-up lazyload" alt="">
                       </a>
                     </div>
                     <div class="back">
                       <a href="/product/{{ $rproduct->slug }}">
-                        <img src="{{ asset('storage/images/fashion/product/front/' . $rproduct->image) }}"
+                        <img src="{{ asset('storage/img/barang/' . $rproduct->image) }}"
                           class="bg-img blur-up lazyload" alt="">
                       </a>
                     </div>
                     <div class="cart-wrap">
                       <ul>
                         <li>
-                          <a href="javascript:void(0)" class="addtocart-btn" data-bs-toggle="modal"
-                            data-bs-target="#addtocart">
+                          <a href="javascript:void(0)" class="addtocart-btn" data-product-id="{{ $rproduct->id }}">
                             <i data-feather="shopping-bag"></i>
                           </a>
                         </li>
                         <li>
-                          <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#quick-view">
+                          <a href="javascript:void(0)" data-bs-toggle="modal"
+                            data-bs-target="#quick-view-{{ $rproduct->id }}">
                             <i data-feather="eye"></i>
                           </a>
                         </li>
@@ -893,17 +759,14 @@
                       </a>
                       <div class="listing-content">
                         <span class="font-light">{{ $rproduct->category->name }}</span>
-                        <p class="font-light">{{ $rproduct->short_description }}</p>
+                        <p class="font-light">{{ $rproduct->description }}</p>
                       </div>
                       <h3 class="theme-color">
-                        @if ($rproduct->sale_price)
-                          {{ $rproduct->sale_price }}
-                        @else
-                          {{ $rproduct->regular_price }}
-                        @endif
+                        Rp.{{ $rproduct->price }}
                       </h3>
-                      <button onclick="location.href = 'cart.html';" class="btn listing-content">Add
-                        To Cart</button>
+                      <button class="btn listing-content addtocart-btn" data-product-id="{{ $rproduct->id }}">
+                        Add To Cart
+                      </button>
                     </div>
                   </div>
                 </div>
@@ -914,5 +777,43 @@
       </div>
     </div>
   </section>
+
+  @foreach ($rproducts as $rproduct)
+    <x-qv-modal :product="$rproduct" />
+  @endforeach
+
   <!-- product section end -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let cartCount = $('header .menu-right #cart-count');
+
+      $('.addtocart-btn').on('click', function() {
+        const productId = $(this).data('product-id');
+
+        $.ajax({
+          url: '/cart',
+          method: 'POST',
+          data: {
+            id: productId,
+            quantity: 1
+          },
+          success: function(response) {
+            cartCount.text(response.count);
+            if ($('.modal').hasClass('show')) {
+              $('.modal').modal('hide');
+            }
+            notify(response.status, response.message);
+          },
+          error: function(xhr) {
+            console.error(xhr.responseJSON.message);
+            notify(false, xhr.responseJSON.message);
+          },
+        });
+      });
+    });
+
+    function updateQuantity() {
+      $("#qty").val(parseInt($("#quantity").val()) + 1);
+    }
+  </script>
 @endsection

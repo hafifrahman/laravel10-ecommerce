@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -34,7 +35,27 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|min:3|max:255|unique:products,name',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer|min:1',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'nullable|string',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        if ($request->hasFile('image')) {
+            $file = $request->file('image');
+            $fileName = $file->hashName();
+            $file->storeAs('img/barang', $fileName, 'public');
+        }
+
+        $validated['image'] = $fileName ?? null;
+        $validated['slug'] = Str::slug($request->name);
+
+        Product::create($validated);
+
+        return redirect('/admin/product')->with('success', 'Berhasil menambah barang.');
     }
 
     /**
@@ -54,6 +75,7 @@ class ProductController extends Controller
     {
         return view('admin.product.edit', [
             'product' => $product,
+            'categories' => Category::all(),
         ]);
     }
 
@@ -62,7 +84,33 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $validated = $request->validate([
+            'name' => 'required|min:3|max:255',
+            'price' => 'required|numeric',
+            'quantity' => 'required|integer|min:0',
+            'category_id' => 'required|exists:categories,id',
+            'description' => 'nullable|string',
+            'image' => 'nullable|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $fileName = $product->image;
+        if ($request->hasFile('image')) {
+            if ($fileName) {
+                Storage::delete('public/img/barang/' . $fileName);
+            }
+
+            $file = $request->file('image');
+            $fileName = $file->hashName();
+            $file->storeAs('img/barang', $fileName, 'public');
+        }
+
+        $validated['image'] = $fileName;
+        $validated['slug'] = Str::slug($request->name);
+        $validated['stock'] = $validated['quantity'] < 1 ? 'kosong' : 'ada';
+
+        $product->update($validated);
+
+        return redirect('/admin/product')->with('success', 'Berhasil mengubah barang.');
     }
 
     /**
@@ -72,9 +120,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return response()->json([
-            'status' => true,
-            'message' => 'Barang berhasil di hapus.',
-        ]);
+        return redirect('/admin/product')->with('success', 'Berhasil menghapus barang.');
     }
 }

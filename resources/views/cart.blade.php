@@ -51,11 +51,15 @@
             </thead>
             <tbody>
               @forelse ($cartItems as $item)
-                <tr data-rowid="{{ $item->rowId }}">
+                <tr>
                   <td>
                     <a href="/product/{{ $item->model->slug }}">
-                      <img src="{{ asset('storage/images/barang/' . $item->model->image) }}" class="blur-up lazyloaded"
-                        alt="">
+                      @if (Storage::exists('public/img/barang/' . $item->model->image))
+                        <img src="{{ asset('storage/img/barang/' . $item->model->image) }}" class="blur-up lazyloaded"
+                          alt="{{ $item->model->name }}">
+                      @else
+                        <span class="text-muted">Gambar tidak tersedia</span>
+                      @endif
                     </a>
                   </td>
                   <td>
@@ -115,7 +119,8 @@
           <div class="row">
             <div class="col-sm-7 col-5 order-1">
               <div class="left-side-button text-end d-flex d-block justify-content-end">
-                <a href="javascript:void(0)" class="text-decoration-underline theme-color d-block text-capitalize">
+                <a href="javascript:void(0)" class="text-decoration-underline theme-color d-block text-capitalize"
+                  @if ($cartItems->count() > 0) data-bs-toggle="modal" data-bs-target="#clearCartModal" @else id="clearCart" @endif>
                   Hapus Semua
                 </a>
               </div>
@@ -153,4 +158,129 @@
       </div>
     </div>
   </section>
+
+  <div class="modal fade" id="clearCartModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    aria-labelledby="clearCartModal-label" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header p-3 border-bottom">
+          <h1 class="modal-title fs-5" id="clearCartModal-label">
+            Konfirmasi Hapus
+          </h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Apakah Anda yakin ingin menghapus semua item dari keranjang?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Batal</button>
+          <button type="button" class="btn btn-sm btn-danger" id="clearCart">
+            Hapus Semua
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      $('.qty-box #quantity').on('change', function() {
+        const rowId = $(this).data('rowid');
+        const qty = $(this).val();
+
+        if (qty > 0) {
+          $.ajax({
+            url: `/cart/${rowId}`,
+            method: 'PATCH',
+            data: {
+              qty
+            },
+            success: function(response) {
+              if (response.success) {
+                console.log(response.success);
+              }
+            },
+            error: function(xhr) {
+              console.error('Error: ' + xhr.responseJSON.message);
+              notify('danger', xhr.responseJSON.message);
+            },
+          });
+        }
+      });
+
+      let cartCount = $('header .menu-right #cart-count');
+
+      $('.cart-section tbody tr td .deletecart-btn').on('click', function() {
+        const productId = $(this).data('rowid');
+        const row = $(this).closest('tr');
+
+        $.ajax({
+          url: `/cart/${productId}`,
+          method: 'DELETE',
+          success: function(response) {
+            if (response.status) {
+              notify(response.status, response.message);
+              row.remove();
+              checkEmptyCart();
+              cartCount.text(response.count);
+            }
+          },
+          error: function(xhr) {
+            console.error('Error: ' + xhr.responseJSON.message);
+            notify('danger', xhr.responseJSON.message);
+          },
+        });
+      });
+
+      const checkEmptyCart = () => {
+        if ($('.cart-table tbody tr').length === 1 && $('.cart-table tbody tr').has('td[colspan]').length) {
+          return;
+        }
+
+        if ($('.cart-table tbody tr').length === 0) {
+          $('.cart-table tbody').html(`
+          <tr>
+            <td colspan="6">
+              <span class="text-muted fs-5">Keranjang kosong.</span>
+            </td>
+          </tr>
+        `);
+        }
+      };
+
+      $('#clearCart').on('click', function() {
+        if ($('.cart-table tbody tr').has('td[colspan]').length) {
+          notify('warning', 'Keranjang sudah kosong');
+        } else {
+          $.ajax({
+            url: '/cart/clear',
+            method: 'POST',
+            success: function(response) {
+              if (response.status) {
+                notify(response.status, response.message);
+                $('.cart-table tbody').html(`
+                  <tr>
+                    <td colspan="6">
+                      <span class="text-muted fs-5">Keranjang kosong.</span>
+                    </td>
+                  </tr>
+                `);
+                cartCount.text(response.count);
+                // Update totals
+                $('.cart-box-details .top-details h6').eq(0).html(`Sub Total <span>Rp.0</span>`);
+                $('.cart-box-details .top-details h6').eq(1).html(`Tax <span>Rp.0</span>`);
+                $('.cart-box-details .top-details h6').eq(2).html(`Total <span>Rp.0</span>`);
+              }
+            },
+            error: function(xhr) {
+              console.error('Error: ' + xhr.responseJSON.message);
+              notify('danger', xhr.responseJSON.message);
+            }
+          });
+        }
+
+        $('.modal').modal('hide');
+      });
+    });
+  </script>
 @endsection

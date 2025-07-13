@@ -15,20 +15,17 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug')->unique();
-            $table->string('short_description');
-            $table->text('description');
+            $table->text('description')->nullable();
             $table->decimal('price');
-            $table->string('SKU');
-            $table->enum('stock_status', ['instock', 'outstock']);
+            $table->string('SKU')->nullable();
+            $table->enum('stock', ['ada', 'kosong'])->default('ada');
             $table->boolean('featured')->default(false);
             $table->unsignedInteger('quantity')->default(1);
-            $table->string('image');
-            $table->text('images');
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('category_id');
-            $table->unsignedBigInteger('brand_id');
             $table->timestamps();
+
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('brand_id')->references('id')->on('brands')->onDelete('cascade');
         });
     }
 

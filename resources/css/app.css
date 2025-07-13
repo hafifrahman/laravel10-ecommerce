@@ -1,0 +1,10 @@
+@import 'bootstrap/dist/css/bootstrap';
+@import 'datatables.net-bs5/css/dataTables.bootstrap5';
+@import 'ion-rangeslider/css/ion.rangeSlider';
+@import 'fontawesome-free/css/all';
+@import 'feather-icon/css/feather';
+@import 'animate.css/source/animate';
+@import 'slick-carousel/slick/slick';
+@import 'slick-carousel/slick/slick-theme';
+@import './demo';
+@import './style';

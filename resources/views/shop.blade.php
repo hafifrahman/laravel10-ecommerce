@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('title', 'Belanja')
-@push('styles')
-  <link id="color-link" rel="stylesheet" type="text/css" href="{{ asset('assets/css/demo2.css') }}">
-@endpush
 @section('content')
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
@@ -90,13 +87,13 @@
                   <div class="img-wrapper">
                     <div class="front">
                       <a href="/product/{{ $product->slug }}">
-                        <img src="{{ asset('storage/images/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
+                        <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
                           alt="">
                       </a>
                     </div>
                     <div class="back">
                       <a href="/product/{{ $product->slug }}">
-                        <img src="{{ asset('storage/images/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
+                        <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
                           alt="">
                       </a>
                     </div>
@@ -128,9 +125,9 @@
                       </a>
                       <div class="listing-content">
                         <span class="font-light">{{ $product->category->name }}</span>
-                        <p class="font-light">{{ $product->short_description }}</p>
+                        <p class="font-light">{{ $product->description }}</p>
                       </div>
-                      <h3 class="theme-color">Rp.{{ $product->regular_price }}</h3>
+                      <h3 class="theme-color">Rp.{{ $product->price }}</h3>
                       <button type="button" data-product-id="{{ $product->id }}" class="btn listing-content">
                         Add To Cart
                       </button>
@@ -139,11 +136,6 @@
                 </div>
               </div>
               <x-qv-modal :product="$product" />
-              <form method="post" action="/cart" id="addtocart" class="d-none">
-                @csrf
-                <input type="hidden" name="id" value="{{ $product->id }}">
-                <input type="hidden" name="quantity" value="1">
-              </form>
             @endforeach
           </div>
 
@@ -154,4 +146,34 @@
     </div>
   </section>
   <!-- Shop Section end -->
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      let cartCount = $('header .menu-right #cart-count');
+
+      $('.addtocart-btn').on('click', function() {
+        const productId = $(this).data('product-id');
+
+        $.ajax({
+          url: '/cart',
+          method: 'POST',
+          data: {
+            id: productId,
+            quantity: 1
+          },
+          success: function(response) {
+            cartCount.text(response.count);
+            if ($('.modal').hasClass('show')) {
+              $('.modal').modal('hide');
+            }
+            notify(response.status, response.message);
+          },
+          error: function(xhr) {
+            console.error(xhr.responseJSON.message);
+            notify(false, xhr.responseJSON.message);
+          },
+        });
+      });
+    });
+  </script>
 @endsection

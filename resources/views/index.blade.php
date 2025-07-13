@@ -16,15 +16,15 @@
 
     <div class="right-side-contain">
       <div class="social-image">
-        <h3><i class="fa-brands fa-facebook"></i></h3>
+        <h3><i class="fab  fa-facebook"></i></h3>
       </div>
 
       <div class="social-image">
-        <h3><i class="fa-brands fa-instagram"></i></h3>
+        <h3><i class="fab  fa-instagram"></i></h3>
       </div>
 
       <div class="social-image">
-        <h3><i class="fa-brands fa-x-twitter"></i></h3>
+        <h3><i class="fab  fa-twitter"></i></h3>
       </div>
     </div>
   </section>

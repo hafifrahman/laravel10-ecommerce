@@ -24,13 +24,15 @@ Route::get('/shop', [ShopController::class, 'index']);
 Route::get('/product/{slug}', [ShopController::class, 'detail']);
 Route::get('/checkout', [ShopController::class, 'checkout']);
 Route::resource('cart', CartController::class);
+Route::post('/cart/clear', [CartController::class, 'clear']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/my-account', [UserController::class, 'index']);
 });
 
-Route::middleware('auth.admin')->prefix('admin')->group(function () {
-    Route::get('/', [AdminController::class, 'dashboard']);
+Route::middleware('auth.admin')->prefix('admin')->name('admin.')->group(function () {
+    Route::get('/dashboard', [AdminController::class, 'dashboard']);
+    Route::resource('user', UserController::class);
     Route::resource('product', ProductController::class);
 });
 

@@ -20,22 +20,19 @@ class ProductFactory extends Factory
         return [
             'name' => $name = fake()->unique()->words($nb = 2, $asText = true),
             'slug' => Str::slug($name),
-            'short_description' => fake()->text(200),
             'description' => fake()->text(500),
             'price' => fake()->numberBetween(1, 22),
             'SKU' => 'SMD' . fake()->numberBetween(100, 500),
-            'stock_status' => 'instock',
+            'stock' => 'ada',
             'quantity' => fake()->numberBetween(100, 200),
             'image' => fake()->randomElement([
                 'arit.png',
                 'cangkul.png',
                 'cangkul_garuk.png',
                 'mesin_semprot.png',
-                'pupuk_organik.png'
+                'pupuk_organik.png',
             ]),
-            'images' => fake()->numberBetween(1, 24) . '.jpg',
             'category_id' => fake()->numberBetween(1, 6),
-            'brand_id' => fake()->numberBetween(1, 6),
         ];
     }
 }

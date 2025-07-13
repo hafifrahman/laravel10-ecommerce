@@ -31,7 +31,6 @@ class DatabaseSeeder extends Seeder
             'role' => 'user',
         ]);
 
-        Brand::factory(6)->create();
         Category::factory(6)->create();
         Product::factory(24)->create();
     }

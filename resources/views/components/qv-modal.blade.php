@@ -5,14 +5,8 @@
       <div class="modal-body">
         <div class="row gy-4">
           <div class="col-lg-6">
-            <div class="quick-view-image">
-              <div class="quick-view-slider ratio_medium">
-                <div>
-                  <img src="{{ asset('storage/images/barang/' . $product->image) }}"
-                    class="img-fluid bg-img blur-up lazyload" alt="product" />
-                </div>
-              </div>
-            </div>
+            <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="img-fluid bg-img blur-up lazyload"
+              alt="product" />
           </div>
           <div class="col-lg-6">
             <div class="product-right">
@@ -36,7 +30,7 @@
                 </li>
               </ul>
               <div class="price mt-3">
-                <h3>Rp.{{ $product->regular_price }}</h3>
+                <h3>Rp.{{ $product->price }}</h3>
               </div>
               <div class="product-details">
                 <h4>product details</h4>
@@ -53,10 +47,11 @@
                 </ul>
               </div>
               <div class="product-btns">
-                <bbtton onclick="document.getElementById('addtocart').submit()" class="btn btn-solid-default btn-sm">
+                <button type="button" data-product-id="{{ $product->id }}"
+                  class="btn btn-solid-default btn-sm addtocart-btn">
                   Tambah ke keranjang
-                </bbtton>
-                <button class="btn btn-solid-default btn-sm">Lihat detail</button>
+                </button>
+                <a href="/product/{{ $product->slug }}" class="btn btn-solid-default btn-sm">Lihat detail</a>
               </div>
             </div>
           </div>
