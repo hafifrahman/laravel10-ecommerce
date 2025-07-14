@@ -22,9 +22,18 @@ class Product extends Model
         parent::boot();
 
         static::deleting(function ($product) {
-            if (Storage::exists('public/img/barang/' . $product->image)) {
-                // Storage::delete('public/img/barang/' . $product->image);
-                Storage::move('public/img/barang/' . $product->image, 'public/img/barang/deleted/' . $product->image);
+            $deletedPath = 'public/img/product/deleted';
+            $files = Storage::files($deletedPath);
+            $maxFiles = 100;
+            if (count($files) >= $maxFiles) {
+                usort($files, function($a, $b) {
+                    return Storage::lastModified($a) <=> Storage::lastModified($b);
+                });
+
+                Storage::delete($files[0]);
+            }
+            if (Storage::exists('public/img/product/' . $product->image)) {
+                Storage::move('public/img/product/' . $product->image, $deletedPath . '/' . $product->image);
             }
         });
     }

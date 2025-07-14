@@ -42,7 +42,7 @@
             <thead>
               <tr class="table-head">
                 <th scope="col">Gambar</th>
-                <th scope="col">Nama Barang</th>
+                <th scope="col">Nama Produk</th>
                 <th scope="col">Harga</th>
                 <th scope="col">Jumlah</th>
                 <th scope="col">total</th>
@@ -54,8 +54,8 @@
                 <tr>
                   <td>
                     <a href="/product/{{ $item->model->slug }}">
-                      @if (Storage::exists('public/img/barang/' . $item->model->image))
-                        <img src="{{ asset('storage/img/barang/' . $item->model->image) }}" class="blur-up lazyloaded"
+                      @if (Storage::exists('public/img/product/' . $item->model->image))
+                        <img src="{{ asset('storage/img/product/' . $item->model->image) }}" class="blur-up lazyloaded"
                           alt="{{ $item->model->name }}">
                       @else
                         <span class="text-muted">Gambar tidak tersedia</span>

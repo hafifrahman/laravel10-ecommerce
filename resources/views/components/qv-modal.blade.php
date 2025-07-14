@@ -5,7 +5,7 @@
       <div class="modal-body">
         <div class="row gy-4">
           <div class="col-lg-6">
-            <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="img-fluid bg-img blur-up lazyload"
+            <img src="{{ asset('storage/img/product/' . $product->image) }}" class="img-fluid bg-img blur-up lazyload"
               alt="product" />
           </div>
           <div class="col-lg-6">

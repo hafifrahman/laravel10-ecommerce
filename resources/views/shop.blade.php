@@ -87,13 +87,13 @@
                   <div class="img-wrapper">
                     <div class="front">
                       <a href="/product/{{ $product->slug }}">
-                        <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
+                        <img src="{{ asset('storage/img/product/' . $product->image) }}" class="bg-img blur-up lazyload"
                           alt="">
                       </a>
                     </div>
                     <div class="back">
                       <a href="/product/{{ $product->slug }}">
-                        <img src="{{ asset('storage/img/barang/' . $product->image) }}" class="bg-img blur-up lazyload"
+                        <img src="{{ asset('storage/img/product/' . $product->image) }}" class="bg-img blur-up lazyload"
                           alt="">
                       </a>
                     </div>

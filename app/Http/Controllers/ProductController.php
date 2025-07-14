@@ -47,7 +47,7 @@ class ProductController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $fileName = $file->hashName();
-            $file->storeAs('img/barang', $fileName, 'public');
+            $file->storeAs('img/product', $fileName, 'public');
         }
 
         $validated['image'] = $fileName ?? null;
@@ -55,7 +55,7 @@ class ProductController extends Controller
 
         Product::create($validated);
 
-        return redirect('/admin/product')->with('success', 'Berhasil menambah barang.');
+        return redirect('/admin/product')->with('success', 'Berhasil menambah product.');
     }
 
     /**
@@ -96,12 +96,12 @@ class ProductController extends Controller
         $fileName = $product->image;
         if ($request->hasFile('image')) {
             if ($fileName) {
-                Storage::delete('public/img/barang/' . $fileName);
+                Storage::delete('public/img/product/' . $fileName);
             }
 
             $file = $request->file('image');
             $fileName = $file->hashName();
-            $file->storeAs('img/barang', $fileName, 'public');
+            $file->storeAs('img/product', $fileName, 'public');
         }
 
         $validated['image'] = $fileName;
@@ -110,7 +110,7 @@ class ProductController extends Controller
 
         $product->update($validated);
 
-        return redirect('/admin/product')->with('success', 'Berhasil mengubah barang.');
+        return redirect('/admin/product')->with('success', 'Berhasil mengubah product.');
     }
 
     /**
@@ -120,6 +120,6 @@ class ProductController extends Controller
     {
         $product->delete();
 
-        return redirect('/admin/product')->with('success', 'Berhasil menghapus barang.');
+        return redirect('/admin/product')->with('success', 'Berhasil menghapus product.');
     }
 }

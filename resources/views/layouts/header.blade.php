@@ -7,7 +7,7 @@
             <div class="menu-left">
               <div class="brand-logo">
                 <a href="/">
-                  <img src="{{ asset('storage/img/logo.png') }}" class="h-logo img-fluid blur-up lazyload w-50 m-0"
+                  <img src="{{ asset('img/logo.png') }}" class="h-logo img-fluid blur-up lazyload w-50 m-0"
                     alt="logo">
                 </a>
 
@@ -31,7 +31,7 @@
                     @if (Auth::check() && Auth::user()->role == 'admin')
                       <li><a href="/admin/dashboard" class="nav-link menu-title">Dashboard</a></li>
                       <li><a href="/admin/user" class="nav-link menu-title">Pengguna</a></li>
-                      <li><a href="/admin/product" class="nav-link menu-title">Barang</a></li>
+                      <li><a href="/admin/product" class="nav-link menu-title">Produk</a></li>
                     @else
                       <li><a href="/" class="nav-link menu-title">Beranda</a></li>
                       <li><a href="/shop" class="nav-link menu-title">Belanja</a></li>
@@ -119,7 +119,7 @@
                     <i data-feather="search" class="font-light"></i>
                   </span>
                   <input type="text" name="q" class="form-control search-type" value="{{ request('q') }}"
-                    placeholder="Cari barang..">
+                    placeholder="Cari produk..">
                   <span class="input-group-text close-search">
                     <i data-feather="x" class="font-light"></i>
                   </span>

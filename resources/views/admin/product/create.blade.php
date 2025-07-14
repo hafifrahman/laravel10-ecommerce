@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Tambah Barang')
+@section('title', 'Tambah Produk')
 @section('content')
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h3>Tambah Barang</h3>
+          <h3>Tambah Produk</h3>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -25,7 +25,7 @@
                   <i class="fas fa-home"></i>
                 </a>
               </li>
-              <li class="breadcrumb-item" aria-current="page"><a href="/admin/product">Barang</a></li>
+              <li class="breadcrumb-item" aria-current="page"><a href="/admin/product">Produk</a></li>
               <li class="breadcrumb-item active" aria-current="page">Tambah</li>
             </ol>
           </nav>
@@ -40,14 +40,14 @@
         <div class="col-md-12">
           <div class="card">
             <div class="card-header">
-              <h5>Form Tambah Barang</h5>
+              <h5>Form Tambah Produk</h5>
             </div>
             <div class="card-body">
               <form method="POST" action="/admin/product" enctype="multipart/form-data" class="addproduct-form">
                 @csrf
 
                 <div class="row mb-3">
-                  <label for="name" class="col-sm-2 col-form-label">Nama Barang</label>
+                  <label for="name" class="col-sm-2 col-form-label">Nama Produk</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control @error('name') is-invalid @enderror" id="name"
                       name="name" value="{{ old('name') }}" required>

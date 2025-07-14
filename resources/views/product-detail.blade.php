@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detail Barang')
+@section('title', 'Detail Produk')
 @section('content')
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h3>{{ $product->name }}</h3>
+          <h3>Produk</h3>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -43,7 +43,7 @@
               <div class="col-md-6">
                 <div class="details-image-1 ratio_asos">
                   <div>
-                    <img src="{{ asset('storage/img/barang/' . $product->image) }}"
+                    <img src="{{ asset('storage/img/product/' . $product->image) }}"
                       class="img-fluid w-100 image_zoom_cls-0 blur-up lazyload" alt="{{ $product->name }}">
                   </div>
                 </div>
@@ -533,10 +533,6 @@
                       <h4>Customer Reviews</h4>
 
                       <div class="customer-section">
-                        <div class="customer-profile">
-                          <img src="{{ asset('storage/img/inner-page/review-image/1.jpg') }}"
-                            class="img-fluid blur-up lazyload" alt="">
-                        </div>
 
                         <div class="customer-details">
                           <h5>Mike K</h5>
@@ -571,110 +567,6 @@
                         </div>
                       </div>
 
-                      <div class="customer-section">
-                        <div class="customer-profile">
-                          <img src="{{ asset('storage/img/inner-page/review-image/2.jpg') }}"
-                            class="img-fluid blur-up lazyload" alt="">
-                        </div>
-
-                        <div class="customer-details">
-                          <h5>Norwalker</h5>
-                          <ul class="rating my-2 d-inline-block">
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                          </ul>
-                          <p class="font-light">Pros: Nice large(9.7") screen. Bright colors.
-                            Easy
-                            to setup and get started. Arrived on time. Cons: a bit slow on
-                            response, but expected as tablet is 2 generations old. But works
-                            fine and good value for the money.</p>
-
-                          <p class="date-custo font-light">- Sep 08, 2021</p>
-                        </div>
-                      </div>
-
-                      <div class="customer-section">
-                        <div class="customer-profile">
-                          <img src="{{ asset('storage/img/inner-page/review-image/3.jpg') }}"
-                            class="img-fluid blur-up lazyload" alt="">
-                        </div>
-
-                        <div class="customer-details">
-                          <h5>B. Perdue</h5>
-                          <ul class="rating my-2 d-inline-block">
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                          </ul>
-                          <p class="font-light">Love the processor speed and the sensitivity
-                            of
-                            the touch screen.</p>
-
-                          <p class="date-custo font-light">- Sep 08, 2021</p>
-                        </div>
-                      </div>
-
-                      <div class="customer-section">
-                        <div class="customer-profile">
-                          <img src="{{ asset('storage/img/inner-page/review-image/4.jpg') }}"
-                            class="img-fluid blur-up lazyload" alt="">
-                        </div>
-
-                        <div class="customer-details">
-                          <h5>MSL</h5>
-                          <ul class="rating my-2 d-inline-block">
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star theme-color"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                            <li>
-                              <i class="fas fa-star"></i>
-                            </li>
-                          </ul>
-                          <p class="font-light">I purchased the Tablet May 2017 and now April
-                            2019
-                            I have to charge it everyday. I don't watch movies on it..just
-                            play
-                            a game or two while on lunch. I guess now I need to power it
-                            down
-                            for future use.</p>
-
-                          <p class="date-custo font-light">- Sep 08, 2021</p>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -700,13 +592,13 @@
                   <div class="img-wrapper">
                     <div class="front">
                       <a href="/product/{{ $rproduct->slug }}">
-                        <img src="{{ asset('storage/img/barang/' . $rproduct->image) }}"
+                        <img src="{{ asset('storage/img/product/' . $rproduct->image) }}"
                           class="bg-img blur-up lazyload" alt="">
                       </a>
                     </div>
                     <div class="back">
                       <a href="/product/{{ $rproduct->slug }}">
-                        <img src="{{ asset('storage/img/barang/' . $rproduct->image) }}"
+                        <img src="{{ asset('storage/img/product/' . $rproduct->image) }}"
                           class="bg-img blur-up lazyload" alt="">
                       </a>
                     </div>

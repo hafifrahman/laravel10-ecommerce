@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
+import { resolve } from 'node:path';
 
 export default defineConfig({
   plugins: [
@@ -8,4 +9,9 @@ export default defineConfig({
       refresh: true,
     }),
   ],
+  resolve: {
+    alias: {
+      '@asset': resolve(__dirname, 'public'),
+    },
+  },
 });

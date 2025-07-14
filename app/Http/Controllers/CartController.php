@@ -31,7 +31,7 @@ class CartController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Barang berhasil di tambahkan ke keranjang.',
+            'message' => 'Produk berhasil di tambahkan ke keranjang.',
             'count' => Cart::instance('cart')->content()->count(),
         ]);
     }
@@ -51,7 +51,7 @@ class CartController extends Controller
 
         return response()->json([
             'status' => 'success',
-            'message' => 'Barang berhasil di hapus dari keranjang.',
+            'message' => 'Produk berhasil di hapus dari keranjang.',
             'count' => Cart::instance('cart')->content()->count(),
         ]);
     }

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Barang')
+@section('title', 'Daftar Pengguna')
 @section('content')
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
@@ -58,7 +58,9 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->phone }}</td>
-                        <td>{{ $user->last_login ? Carbon\Carbon::parse($user->last_login)->diffForHumans() : 'Tidak tersedia' }}</td>
+                        <td>
+                          {{ $user->last_login ? Carbon\Carbon::parse($user->last_login)->diffForHumans() : 'Tidak tersedia' }}
+                        </td>
                         <td class="text-nowrap">
                           <a href="/admin/user/{{ $user->id }}" class="btn btn-sm btn-success text-light">
                             Detail

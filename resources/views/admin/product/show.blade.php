@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detail Barang')
+@section('title', 'Detail Produk')
 @section('content')
   <style>
     .product-gallery {
@@ -64,7 +64,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h3>Barang</h3>
+          <h3>Detail Produk</h3>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -72,7 +72,7 @@
                   <i class="fas fa-home"></i>
                 </a>
               </li>
-              <li class="breadcrumb-item" aria-current="page"><a href="/admin/product">Barang</a></li>
+              <li class="breadcrumb-item" aria-current="page"><a href="/admin/product">Produk</a></li>
               <li class="breadcrumb-item active" aria-current="page">Detail</li>
             </ol>
           </nav>
@@ -86,7 +86,7 @@
       <div class="row">
         <div class="col-lg-6">
           <div class="product-gallery shadow-sm">
-            <img src="{{ asset('storage/img/barang/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid"
+            <img src="{{ asset('storage/img/product/' . $product->image) }}" alt="{{ $product->name }}" class="img-fluid"
               id="mainProductImage">
           </div>
         </div>

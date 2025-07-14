@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Barang')
+@section('title', 'Daftar Produk')
 @section('content')
   <section class="breadcrumb-section section-b-space" style="padding-top:20px;padding-bottom:20px;">
     <ul class="circles">
@@ -17,7 +17,7 @@
     <div class="container">
       <div class="row">
         <div class="col-12">
-          <h3>Barang</h3>
+          <h3>Produk</h3>
           <nav>
             <ol class="breadcrumb">
               <li class="breadcrumb-item">
@@ -25,7 +25,7 @@
                   <i class="fas fa-home"></i>
                 </a>
               </li>
-              <li class="breadcrumb-item active" aria-current="page">Barang</li>
+              <li class="breadcrumb-item active" aria-current="page">Produk</li>
             </ol>
           </nav>
         </div>
@@ -62,8 +62,8 @@
                         <td>{{ $loop->index + 1 }}</td>
                         <td>{{ $product->name }}</td>
                         <td>
-                          @if (Storage::exists('public/img/barang/' . $product->image))
-                            <img src="{{ asset('storage/img/barang/' . $product->image) }}" alt="{{ $product->name }}"
+                          @if (Storage::exists('public/img/product/' . $product->image))
+                            <img src="{{ asset('storage/img/product/' . $product->image) }}" alt="{{ $product->name }}"
                               style="width: 100px;">
                           @else
                             <span class="text-muted">Gambar tidak tersedia</span>
@@ -85,7 +85,8 @@
                             Hapus
                           </button>
                           <x-delete-modal :model="$product" id="deleteproduct-modal-{{ $product->id }}"
-                            url="/admin/product/{{ $product->id }}" message="Apakah anda yakin ingin menghapus barang" />
+                            url="/admin/product/{{ $product->id }}"
+                            message="Apakah anda yakin ingin menghapus produk" />
                         </td>
                       </tr>
                     @endforeach

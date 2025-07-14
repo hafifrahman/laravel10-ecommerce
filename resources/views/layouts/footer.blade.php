@@ -6,7 +6,7 @@
           <div class="footer-contact">
             <div class="brand-logo">
               <a href="/" class="footer-logo float-start">
-                <img src="{{ asset('storage/img/logo.png') }}" class="f-logo img-fluid blur-up lazyload" alt="logo">
+                <img src="{{ asset('img/logo.png') }}" class="f-logo img-fluid blur-up lazyload" alt="logo">
               </a>
             </div>
             <ul class="contact-lists" style="clear:both;">

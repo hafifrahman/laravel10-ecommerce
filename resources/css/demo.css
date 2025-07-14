@@ -7455,7 +7455,7 @@ header .main-navbar .nav-menu>li.mega-menu.home-menu .megamenu-image-title {
 
 .poster-section {
     height: 850px;
-    background-image: url(../img/landing.jpg);
+    background-image: url(@asset/img/landing.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     position: relative;
@@ -16865,7 +16865,7 @@ hr {
 }
 
 .custome-form-check .form-check-input:checked[type="checkbox"] {
-    background-image: url(../svg/check.svg);
+    background-image: url(@asset/svg/check.svg);
     background-size: 13px;
 }
 
@@ -17204,7 +17204,7 @@ hr {
 }
 
 .category-option .category-name .accordion-button:not(.collapsed)::after {
-    background-image: url(../svg/minus.svg);
+    background-image: url(@asset/svg/minus.svg);
     -webkit-filter: invert(1);
     filter: invert(1);
     -webkit-transform: rotate(0);
@@ -17212,7 +17212,7 @@ hr {
 }
 
 .category-option .category-name .accordion-button:after {
-    background-image: url(../svg/plus.svg);
+    background-image: url(@asset/svg/plus.svg);
     -webkit-filter: invert(1);
     filter: invert(1);
     -webkit-transition: all 0.2s ease-in-out;

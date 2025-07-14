@@ -54,7 +54,7 @@
               <div class="mb-2 dashboard-icon-wrapper">
                 <i class="fas fa-box fa-2x dashboard-icon"></i>
               </div>
-              <h5 class="fw-semibold">Barang</h5>
+              <h5 class="fw-semibold">Produk</h5>
               <h2 class="fw-bold mb-0">{{ $products->count() }}</h2>
             </div>
           </a>
